@@ -10,7 +10,7 @@ const gameHeight = gameBoard.height;
 const boardBackground = "white";
 const snakeColor = "lightgreen";
 const snakeBorder = "black";
-const foodColor = "red";
+const foodColor = "yellow";
 const unitSize = 25;
 
 // Creating Variables
@@ -59,7 +59,10 @@ function nextTick(){
     }
 };
 function clearBoard(){
-    ctx.fillStyle = boardBackground;
+    const gradient = ctx.createLinearGradient(0, 0, gameWidth, gameHeight);
+    gradient.addColorStop(0, '#6a11cb'); // Purple
+    gradient.addColorStop(1, '#2575fc'); // Blue
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, gameWidth, gameHeight)
 };
 function createFood(){
@@ -72,6 +75,8 @@ function createFood(){
 };
 function drawFood(){
     ctx.fillStyle = foodColor;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "yellow";
     ctx.fillRect(foodX, foodY, unitSize, unitSize);
 };
 function moveSnake(){
