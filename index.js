@@ -32,12 +32,29 @@ resetBtn.addEventListener("click", resetGame);
 
 // Here we run each function that we create
 gameStart();
-createFood();
-drawFood();
 
 //Creating functions
-function gameStart(){};
-function nextTick(){};
+function gameStart(){
+    running= true;
+    scoreText.textContent = score;
+    createFood()
+    drawFood()
+};
+function nextTick(){
+    if(running){
+        setTimeout(()=>{
+            clearBoard();
+            drawFood();
+            moveSnake();
+            drawSnake();
+            checkGameOver();
+            nextTick();
+        }, 75);
+    }
+    else{
+        displayGameOver();
+    }
+};
 function clearBoard(){};
 function createFood(){
     function randomFood(min, max){
